@@ -1,1 +1,1 @@
-# cikma-teklifi
+isterseniz kod kısmını özelleştirebilirsiniz.
