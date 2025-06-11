@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Özel Mesaj</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            font-size: 3rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            display: none;
+            opacity: 0;
+            transform: scale(0.5);
+            animation: fadeInScale 2s forwards;
+        }
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: none;
+        }
+        .heart {
+            position: absolute;
+            bottom: 0;
+            font-size: 60px; /* Emoji boyutunu büyüttük */
+            animation: float 4s infinite;
+            opacity: 0.9;
+            z-index: 10;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+        .button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            background: #ff6f61;
+            border: none;
+            color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .button:hover {
+            background: #ff3b30;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="button" onclick="showMessage()">Bana tıkla 💕</button>
+        <h1 id="loveMessage">Seni herşeyden çok seviyorumm <br> Benimle çıkar mısınnn? ❤️</h1>
+    </div>
+    <div class="hearts"></div>
+    <script>
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.textContent = "❤️"; 
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            document.querySelector(".hearts").appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+        
+        function showMessage() {
+            const message = document.getElementById("loveMessage");
+            message.style.display = "block";
+            document.querySelector(".hearts").style.display = "block";
+            setInterval(createHeart, 300);
+            message.style.animation = "fadeInScale 2s forwards";
+        }
+    </script>
+</body>
+</html>
+
+
